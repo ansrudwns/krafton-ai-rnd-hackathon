@@ -4,6 +4,16 @@ KRAFTON AI R&D Hackathon 예선과 본선에서 작성한 풀이, 제출본, 대
 
 이 저장소의 목적은 단순히 제출 코드를 보관하는 것이 아니라, 각 문제에서 요구한 **AI 활용 능력**, **문제 구조 이해**, **사후 분석과 개선 방향**을 함께 보여주는 것입니다.
 
+## For Reviewers
+
+이 레포는 완성된 단일 서비스가 아니라, 제한 시간 안에서 AI 도구와 수학적/엔지니어링 판단을 결합해 문제를 푼 기록입니다. 따라서 코드를 볼 때는 다음 관점으로 읽는 것을 권장합니다.
+
+- `original-submission`: 대회 시간 안에서 실제로 제출하거나 제출을 목표로 작성한 풀이
+- `post-contest-before-review`: 주최자 후기 공개 전에 스스로 발견한 문제점과 개선 시도
+- `refined-after-review`: 주최자 후기의 출제 의도를 반영해 새로 정리하거나 구현할 개선 방향
+
+핵심 평가 포인트는 정답 코드 자체보다 **문제 구조를 빠르게 모델링하는 능력**, **AI 출력물을 검증하고 보정하는 능력**, **시간 제한이 있는 상황에서 실행 가능한 파이프라인을 설계하는 능력**입니다.
+
 ## Highlights
 
 - 약 300명이 참가한 KRAFTON AI R&D Hackathon에서 본선에 진출했습니다.
@@ -52,6 +62,23 @@ KRAFTON AI R&D Hackathon 예선과 본선에서 작성한 풀이, 제출본, 대
 | Finals Day 1 Problem 1 | Written Exam | `finals/day1/problem-1-written-exam` | Attention, sampling, LPN 수학 이해도 점검 |
 | Finals Day 1 Problem 2 | BattlePredict | `finals/day1/problem-2-battlepredict` | Non-stationary skill rating, hidden day-block recovery |
 | Finals Day 2 Problem 3 | VideoAgent | `finals/day2/videoagent` | 15분 내 20개 비디오 QA를 처리하는 multimodal agent harness |
+
+## What This Shows
+
+| Area | Evidence in this repo |
+|---|---|
+| AI-assisted problem solving | Transformer 설계, LPN 복원, 시계열 skill 추정, 멀티모달 QA harness를 각 문제 구조에 맞게 분해 |
+| Mathematical modeling | GF(2) solving, Bradley-Terry skill model, Markov-chain expected kills, anonymous block recovery 방향 분석 |
+| LLM/Agent engineering | VideoAgent에서 downsampling, chunking, map-reduce, retry, timeout, incremental backup 전략 설계 |
+| Post-hoc analysis | 제출본과 사후 개선본을 분리하고, 주최자 후기 기반으로 의도와 한계를 재해석 |
+
+## Recommended Reading Order
+
+1. `docs/organizer-review-summary.md`: 해커톤이 평가하려 한 역량 요약
+2. `docs/problem-intent-analysis.md`: 문제별 출제 의도와 내 풀이의 위치
+3. `finals/day2/videoagent/README.md`: 제한 시간형 멀티모달 agent 설계 사례
+4. `finals/day1/problem-2-battlepredict/README.md`: 시계열 예측 문제의 모델링과 사후 교정
+5. `preliminary/problem-2-sparsetap/README.md`: LPN 문제에서 의도된 풀이와 제출 풀이의 차이
 
 ## Organizer Review
 
