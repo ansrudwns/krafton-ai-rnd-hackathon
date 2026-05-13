@@ -1,8 +1,39 @@
-# KRAFTON AI R&D Hackathon
+# KRAFTON AI R&D Hackathon Archive
 
 KRAFTON AI R&D Hackathon 예선과 본선에서 작성한 풀이, 제출본, 대회 직후 자체 회고를 정리한 저장소입니다.
 
-이 저장소는 세 가지 버전을 구분합니다.
+이 저장소의 목적은 단순히 제출 코드를 보관하는 것이 아니라, 각 문제에서 요구한 **AI 활용 능력**, **문제 구조 이해**, **사후 분석과 개선 방향**을 함께 보여주는 것입니다.
+
+## Highlights
+
+- 약 300명이 참가한 KRAFTON AI R&D Hackathon에서 본선에 진출했습니다.
+- 예선에서는 `MultiplierBoard`, `SparseTap` 두 문제를 풀었습니다.
+- 본선에서는 필기형 문제, `BattlePredict`, `VideoAgent` 문제를 수행했습니다.
+- 주최자 후기의 출제 의도를 바탕으로 각 문제의 intent note를 정리했습니다.
+- 대회 당시 제출본과 대회 직후 자체 개선본을 구분했습니다.
+
+## Repository Structure
+
+```text
+.
+├─ docs/
+│  ├─ organizer-review-summary.md
+│  ├─ problem-intent-analysis.md
+│  └─ my-retrospective.md
+├─ preliminary/
+│  ├─ problem-1-multiplierboard/
+│  └─ problem-2-sparsetap/
+└─ finals/
+   ├─ day1/
+   │  ├─ problem-1-written-exam/
+   │  └─ problem-2-battlepredict/
+   └─ day2/
+      └─ videoagent/
+```
+
+## Version Policy
+
+각 문제 폴더는 가능한 경우 아래 버전 구분을 따릅니다.
 
 | Version | Meaning |
 |---|---|
@@ -10,7 +41,7 @@ KRAFTON AI R&D Hackathon 예선과 본선에서 작성한 풀이, 제출본, 대
 | `post-contest-before-review` | 주최자 후기 블로그를 보기 전, 대회 직후 자체 분석으로 개선한 풀이 |
 | `refined-after-review` | 주최자 후기와 출제 의도를 읽은 뒤 새로 보강할 예정인 풀이 |
 
-대용량 비디오, 제출용 압축 파일, `.env`, 가상환경, 비공개 가능성이 있는 원본 데이터는 제외했습니다.
+`refined-after-review` 폴더는 아직 계획 단계인 문제도 있습니다. 사후 개선물이 당시 제출물처럼 보이지 않도록 시점을 명확히 분리했습니다.
 
 ## Problem Map
 
@@ -27,9 +58,37 @@ KRAFTON AI R&D Hackathon 예선과 본선에서 작성한 풀이, 제출본, 대
 주최자 후기 원문:
 https://kangwooklee.com/blogs/krafton_ai_hackathon_2026/blog.html
 
-핵심 메시지는 "AI를 적극적으로 사용하되, AI가 그럴듯하게 틀릴 때 사람이 문제 구조를 이해하고 개입할 수 있어야 한다"는 것입니다. 각 문제의 `intent-notes.md`에는 이 관점에서 문제 의도와 내 풀이 방향을 정리합니다.
+핵심 메시지는 다음과 같습니다.
+
+> AI를 적극적으로 사용하되, AI가 그럴듯하게 틀릴 때 사람이 문제 구조를 이해하고 개입할 수 있어야 한다.
+
+이 관점에서 각 문제의 `intent-notes.md`에는 출제 의도, 내 풀이의 위치, 향후 개선 방향을 정리했습니다.
+
+## Problem Summaries
+
+### MultiplierBoard
+
+6-bit binary multiplication을 수행하는 작은 Transformer 구조를 설계하는 문제입니다. 제출본은 2-layer Transformer, parameter count, weight tying, 학습 가능성 분석을 포함합니다.
+
+### SparseTap
+
+Noisy XOR sequence에서 숨겨진 tap offset을 찾는 문제입니다. 주최자 의도는 LPN/BKW였고, 제출본은 RANSAC-style GF(2) solving과 numerical exploration을 사용했습니다.
+
+### Written Exam
+
+Round 1 풀이를 실제로 이해했는지 확인하는 no-device exam입니다. 문제 전문은 공개하지 않고, 안전한 요약과 학습 노트만 둡니다.
+
+### BattlePredict
+
+시간에 따라 변하는 player skill을 바탕으로 미래 kill count를 예측하는 문제입니다. 원본 제출은 Bradley-Terry, empirical matrix, Markov-chain expected kills를 활용했고, 대회 직후 회고에서는 validation horizon mismatch와 regularization scaling 문제를 분석했습니다.
+
+### VideoAgent
+
+20개 비디오와 20개 prompt를 제한 시간 안에 처리하는 multimodal QA agent 문제입니다. 원본 제출은 FFmpeg downsampling, chunking, Gemini Map-Reduce, incremental answer backup을 사용했습니다. 대회 직후 개선본은 timeout, async cleanup, retry 구조를 보강하는 방향으로 정리했습니다.
 
 ## What Is Excluded
+
+GitHub 공개에 적합하지 않거나 용량이 큰 파일은 제외했습니다.
 
 - Contest videos and sample videos (`*.mp4`)
 - Submission archives (`*.zip`)
@@ -38,4 +97,11 @@ https://kangwooklee.com/blogs/krafton_ai_hackathon_2026/blog.html
 - Python caches (`__pycache__/`)
 - Large PDFs and non-public raw assets
 
-Excluded files are documented when they are necessary to understand how to run or reproduce the project.
+필요한 경우, 제외된 데이터의 역할은 각 문제 README에서 설명합니다.
+
+## Next Steps
+
+- `BattlePredict/refined-after-review`: organizer intent에 맞춘 BTL → Hungarian assignment → refit → extrapolate pipeline 구현
+- `VideoAgent/refined-after-review`: small eval set, verification pass, timeout/retry/cancel-safe harness 구현
+- `SparseTap`: BKW baseline 또는 RANSAC success condition 분석 추가
+- `MultiplierBoard`: hand-proof를 layer-by-layer로 더 명확하게 정리
