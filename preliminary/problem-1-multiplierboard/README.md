@@ -6,6 +6,19 @@ Round 1 Day 1 problem. The goal was to design a compact Transformer architecture
 
 This problem was not mainly about training a large model. It tested whether a participant could reason about what a small Transformer can compute: bit routing through attention, local computation through MLPs, carry propagation, parameter count, and whether the architecture is actually sufficient for binary multiplication.
 
+## Solution Flow
+
+```mermaid
+flowchart LR
+  A["6-bit inputs"] --> B["Partial product reasoning"]
+  B --> C["Attention routes relevant bits"]
+  C --> D["MLP computes local terms"]
+  D --> E["Carry propagation"]
+  E --> F["Output product bits"]
+  F --> G["Parameter count and proof sketch"]
+  G --> H["Training sanity check"]
+```
+
 ## Repository Layout
 
 - `original-submission/`: contest-time code and reports.

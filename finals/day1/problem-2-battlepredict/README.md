@@ -6,6 +6,22 @@ Round 2 Day 1 afternoon problem. The task was to predict future player kill coun
 
 The surface task is a prediction problem, but the real difficulty is that player skill changes over time and part of the training data is anonymized by day. A solution has to model pairwise combat outcomes, recover hidden temporal structure, and extrapolate skill trends into future gauntlets.
 
+## Solution Flow
+
+```mermaid
+flowchart LR
+  A["Pairwise battle logs"] --> B["Bradley-Terry skill estimation"]
+  B --> C["Labeled day skill anchors"]
+  A --> D["Anonymous day blocks"]
+  D --> E["Block-level skill vectors"]
+  C --> F["Expected skill trajectory"]
+  E --> G["Hungarian day assignment"]
+  F --> G
+  G --> H["Refit temporal skill trends"]
+  H --> I["Predict days 22-50"]
+  I --> J["Expected kills by gauntlet order"]
+```
+
 ## Repository Layout
 
 - `original-submission/`: contest-time code and outputs.

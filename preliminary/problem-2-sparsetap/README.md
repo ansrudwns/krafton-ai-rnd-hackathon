@@ -6,6 +6,20 @@ Round 1 Day 2 problem. The task was to recover hidden XOR tap offsets from noisy
 
 SparseTap looks like a sequence-analysis problem at first, but the intended abstraction is Learning Parity with Noise (LPN). The useful signal only appears when the correct tap set is considered jointly, so simple lag correlation is expected to fail.
 
+## Solution Flow
+
+```mermaid
+flowchart LR
+  A["Noisy bit sequence"] --> B["Failed marginal correlation"]
+  B --> C["LPN abstraction"]
+  C --> D["Joint tap-set search"]
+  D --> E["RANSAC-style GF(2) solving"]
+  D --> F["Numerical exploration"]
+  E --> G["Candidate offsets"]
+  F --> G
+  G --> H["Compare with BKW-style intended path"]
+```
+
 ## Repository Layout
 
 - `original-submission/`: contest-time code and report.

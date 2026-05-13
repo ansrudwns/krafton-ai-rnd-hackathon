@@ -6,6 +6,23 @@ Round 2 Day 2 problem. The task was to answer 20 video questions within a strict
 
 This was the most engineering-heavy problem in the finals. A naive approach of uploading full videos to a multimodal model is slow, expensive, and fragile under a 15-minute deadline. The core challenge was to build an agent harness that could compress media, run many calls safely, preserve partial answers, and still leave enough time for final verification.
 
+## Agent Harness
+
+```mermaid
+flowchart LR
+  A["20 hidden videos and prompts"] --> B["FFmpeg downsampling"]
+  B --> C["Chunking"]
+  C --> D["Parallel map calls"]
+  D --> E["Local evidence summaries"]
+  E --> F["Reduce reasoning pass"]
+  F --> G["Answer extraction"]
+  G --> H["Incremental backup"]
+  G --> I["Verification pass"]
+  I --> J["Final submission string"]
+  D --> K["Timeout / retry / cancellation"]
+  K --> H
+```
+
 ## Repository Layout
 
 - `original-submission/`: contest-time VideoAgent V3 files.

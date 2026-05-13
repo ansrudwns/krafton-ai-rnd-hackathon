@@ -6,6 +6,19 @@ Round 2 Day 1 first problem. This was a no-device written exam connected to the 
 
 The written exam was designed to check whether AI-assisted contest submissions were backed by real understanding. It covered topics such as attention computation, sampling behavior, and LPN-style reasoning. Because the original exam material may not be appropriate to redistribute in full, this folder keeps only safe notes and summaries.
 
+## Concept Map
+
+```mermaid
+flowchart LR
+  A["Round 1 submissions"] --> B["No-device written exam"]
+  B --> C["Attention by hand"]
+  B --> D["Sampling behavior"]
+  B --> E["LPN noise reasoning"]
+  C --> F["MultiplierBoard understanding"]
+  E --> G["SparseTap understanding"]
+  D --> H["AI output verification"]
+```
+
 ## Repository Layout
 
 - `notes-from-pdf.txt`: extracted study notes and safe reference text.

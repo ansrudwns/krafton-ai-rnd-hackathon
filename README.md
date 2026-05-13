@@ -45,6 +45,18 @@ KRAFTON AI R&D Hackathon 예선과 본선에서 작성한 풀이, 제출본, 대
 
 각 문제 폴더는 가능한 경우 아래 버전 구분을 따릅니다.
 
+```mermaid
+flowchart LR
+  A["Contest problem"] --> B["original-submission"]
+  B --> C["post-contest-before-review"]
+  C --> D["organizer review"]
+  D --> E["intent-notes"]
+  E --> F["refined-after-review"]
+  B --> G["What worked"]
+  C --> H["What failed"]
+  F --> I["Next implementation plan"]
+```
+
 | Version | Meaning |
 |---|---|
 | `original-submission` | 대회 제한 시간 안에서 작성하거나 제출한 풀이 |
