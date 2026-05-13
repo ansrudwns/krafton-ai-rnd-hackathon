@@ -1,0 +1,64 @@
+해커톤 보고서에 기술된 **'이기종 맵리듀스(Heterogeneous Map-Reduce)'** 전략을 Vertex AI 환경에 최적화하여 정리한 Markdown 파일입니다. 이 내용을 바탕으로 시스템을 재구축하시면 로컬 부하를 최소화하면서도 15분 제한 시간을 안정적으로 맞출 수 있습니다.
+
+-----
+
+# 🚀 VideoAgent: 이기종 맵리듀스 기반 비디오 분석 파이프라인
+
+[cite_start]본 방법론은 **KRAFTON AI R\&D Hackathon**의 극단적인 타임어택(15분 내 20개 비디오 처리) 환경을 극복하기 위해 설계되었습니다[cite: 5].
+
+## 1\. 시스템 아키텍처 개요
+
+[cite_start]단일 모델의 문맥 유실(Context Loss)과 응답 지연을 방지하기 위해 \*\*인지(Perception)\*\*와 **추론(Cognition)** 단계를 분리한 **'이기종 맵리듀스'** 구조를 채택합니다[cite: 6, 23].
+
+  * [cite_start]**Map Phase (Worker):** Gemini 3.1 Flash-Lite를 활용한 고속 객체 탐지 및 로그 생성[cite: 17, 24].
+  * [cite_start]**Reduce Phase (Master):** Gemini 3.1 Pro를 활용한 논리적 정답 도출 및 함정 회피[cite: 19, 25].
+
+-----
+
+## 2\. 핵심 전략 및 구현 상세
+
+### 2.1 시공간 극속 압축 (Ultrafast Downsampling)
+
+[cite_start]네트워크 업로드 병목을 제거하기 위해 FFmpeg를 이용한 파괴적 압축을 수행합니다[cite: 10, 11].
+
+  * [cite_start]**공간 압축:** 해상도를 **640px**로 강제 리사이징하여 파일 크기 절감[cite: 12].
+  * [cite_start]**시간 압축:** **1fps** 단위 프레임 추출을 통해 데이터량을 90% 이상 제거[cite: 13].
+  * [cite_start]**효과:** 500MB 이상의 대용량 영상을 **5초 내외**에 4MB 이하 청크로 변환하여 업로드 지연을 0.1초 수준으로 단축[cite: 14, 43].
+
+### 2.2 질의 지향적 분산 추적 (Query-Aware Tracking)
+
+[cite_start]워커 AI에게 질문(\<TARGET QUESTION\>)을 선제적으로 주입하여 분석 효율을 극대화합니다[cite: 16, 17].
+
+  * [cite_start]**표적 탐색:** 질문과 무관한 배경 데이터를 배제하고 오직 정답과 관련된 대상만을 시계열 로그(`[MM:SS] Action`)로 기록[cite: 18, 45].
+  * [cite_start]**연쇄 사고(CoT):** 텍스트로 치환된 이벤트 로그를 바탕으로 Master 모델이 최종 정답을 추론[cite: 20].
+
+-----
+
+## 3\. Vertex AI 최적화 및 안정성 확보
+
+기존 로컬 루프의 멈춤 현상을 방지하기 위해 Vertex AI의 기업용 기능을 활용합니다.
+
+| 기능 | 상세 내용 | 효과 |
+| :--- | :--- | :--- |
+| **Media Resolution Lockdown** | [cite_start]`media_resolution="LOW"` 옵션 강제 적용[cite: 29]. | [cite_start]프레임당 토큰 소모량을 **70 토큰**으로 고정하여 할당량 보호[cite: 30, 31]. |
+| **Unified Quota 관리** | 단일 프로젝트 내 고성능 할당량(RPM/TPM) 확보. | [cite_start]다중 계정(Round-Robin) 관리 오버헤드 제거 및 로컬 부하 감소[cite: 32]. |
+| **Batch Prediction** | GCS(Google Cloud Storage) 기반 비동기 처리. | [cite_start]로컬 프로세스 멈춤 방지 및 안정적인 병렬 처리 보장[cite: 35, 36]. |
+| **Resilience Logic** | [cite_start]지수형 백오프(Exponential Backoff) 및 세마포어 적용[cite: 33, 34]. | [cite_start]API 429/503 에러 발생 시 자동 복구 및 생존력 확보[cite: 27, 34]. |
+
+-----
+
+## 4\. 결론 (Conclusion)
+
+[cite_start]이 파이프라인은 **영상 압축(FFmpeg), 이기종 멀티 에이전트, 하드웨어 스로틀링 대응**을 일체화하여, 어떤 환경에서도 마감 15분 전 20개의 정답을 온전하게 출력하는 것을 목표로 합니다[cite: 47, 49, 50].
+
+-----
+
+### 🛠️ 실행 가이드 (Markdown 팁)
+
+이 방법론을 코드로 구현하실 때는 다음의 우선순위를 권장합니다:
+
+1.  **GCS 업로드:** 로컬에서 압축된 청크를 Google Cloud Storage에 먼저 적재.
+2.  **Vertex AI Batch 호출:** `aiplatform.BatchPredictionJob`을 통해 클라우드 병렬화 실행.
+3.  [cite_start]**결과 파싱:** 정규식(Fallback Regex)을 활용해 정답 문자열만 추출[cite: 21].
+
+-----

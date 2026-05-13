@@ -1,0 +1,28 @@
+﻿Total train duels: 4200
+Total test gauntlets: 1450
+
+Bradley-Terry Learned Skills (Time-Weighted):
+Player 0: 1.3014
+Player 1: 0.7454
+Player 2: 0.3208
+Player 3: 0.2309
+Player 4: -0.0687
+Player 5: -0.1446
+Player 6: -0.2997
+Player 7: -0.5044
+Player 8: -0.5192
+Player 9: -1.0620
+
+Final Predicted Total Kills (Days 22-50):
+user_0: 1019.0812
+user_1: 908.3447
+user_2: 798.1583
+user_3: 687.0514
+user_4: 449.5232
+user_5: 547.1183
+user_6: 419.5434
+user_7: 302.2306
+user_8: 418.8548
+user_9: 250.0940
+
+Checksum (5800.0000) written to predictions.txt

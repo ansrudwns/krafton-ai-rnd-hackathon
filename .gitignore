@@ -1,0 +1,25 @@
+.env
+*.env
+__pycache__/
+*.pyc
+venv/
+.venv/
+env/
+
+# Large or non-public contest assets
+*.mp4
+*.zip
+*.7z
+*.rar
+target_videos/
+sample_test/
+temp_compressed/
+ffmpeg_bin/
+
+# Local logs and generated artifacts
+*.log
+cmd_log.txt
+test_log.txt
+error_log.txt
+clean_log.txt
+*.pdf

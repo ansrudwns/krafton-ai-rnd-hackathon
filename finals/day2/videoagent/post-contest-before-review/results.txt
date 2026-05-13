@@ -1,0 +1,31 @@
+Legacy version(google api):
+FGWXXXXXGFXBXXXDCDXX (Total Time: 20 mins over)
+
+Vertex AI version:
+LGLCCDDQFFMBMGCDDDIF
+
++Add legacy method:
+MOQCGLDQFFQCNHADCDFE
+
++temperature: 1
+CZUCGNDMEFMBNJBDJDKF (Total Time: 199.88 seconds)
+CGUCGNDMEFMBMJBDJDMF (Total Time: 190.19 seconds)
+CZUCHNDQEFABNJBDCDKF (Total Time: 199.02 seconds)
+
++1fps / 640px -> 2fps / 720px (초당 프레임 2배 증가, 해상도 상향)
+COTCDNDAFFLBNHBDCCJF (Total Time: 234.61 seconds)
+CGQCDNDOFFABNHBDCDJF (Total Time: 343.07 seconds)
+CGQCDLDOEFLCNHBDCDKF (Total Time: 242.62 seconds)
+
++스마트 청킹/워커 스포일러/마스터 자가검열
+CGPCDMDOFFRBPIBDCDMF (Total Time: 653.67 seconds)
+CGPCDMDOFFZBPIBDCDKF (Total Time: 402.87 seconds)
+CGPCDMDOEFRBPIBDCDMF (Total Time: 663.07 seconds)
+CGPCDMDOEFZBPIBDCDKF (Total Time: 385.92 seconds)
+
++청크 내부 신호등/워커 단 재시도 로직
+CGPCDMDOFFNBPIBDCDKF (Total Time: 315.64 seconds)
+CGPCDMDOFFNBPIBDCDMF (Total Time: 666.17 seconds)
+
+
+
